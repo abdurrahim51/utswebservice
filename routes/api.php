@@ -1,8 +1,9 @@
 <?php
 
+use App\Http\Controllers\MahasiswaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MahasiswaController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,9 +18,13 @@ use App\Http\Controllers\MahasiswaController;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
 
-    Route::get('/mahasiswas', [MahasiswaController::class, 'index']);
-    Route::post('/mahasiswas', [MahasiswaController::class, 'store']);
-    Route::put('/mahasiswas/{mahasiswa}', [MahasiswaController::class, 'update']);
-    Route::delete('/mahasiswas/{mahasiswa}', [MahasiswaController::class, 'destroy']);
+Route::prefix('/mahasiswa')->group(function () {
+    Route::get('', [MahasiswaController::class, 'index']);
+    Route::post('', [MahasiswaController::class, 'create']);
+    Route::get('/{id}', [MahasiswaController::class, 'detail']);
+    Route::put('/{id}', [MahasiswaController::class, 'update']);
+    Route::patch('/{id}', [MahasiswaController::class, 'patch']);
+    Route::delete('/{id}', [MahasiswaController::class, 'delete']);
 });

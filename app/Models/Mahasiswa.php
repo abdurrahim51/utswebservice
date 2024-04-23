@@ -7,19 +7,28 @@ use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class MahasiswaModel extends Model
+
+class Mahasiswa extends Model
 {
     use HasFactory;
-    use SoftDeletes;
+    // use SoftDeletes;
+
     protected $table        = 'mahasiswa';
-    protected $primaryKey   = 'mahasiswa_id';
 
-    protected $fillable     = ['mahasiswa_id', 'mahasiswa_nama', 'mahasiswa_alamat'];
+    protected $fillable     = [
+        'id',
+        'NIM',
+        'nama_mahasiswa',
+    ];
 
-    protected $hidden       = ['created_at', 'updated_at', 'deleted_at'];
+    // protected $hidden       = ['created_at', 'updated_at', 'deleted_at'];
 
     protected function serializeDate($date)
     {
         return $date->format('Y-m-d H:i:s');
     }
+
+    // public function province() {
+    //     return $this->belongsTo(Mahasiswa::class, 'province_id', 'province_id');
+    // }
 }
